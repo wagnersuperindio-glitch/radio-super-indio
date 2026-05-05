@@ -1,0 +1,9 @@
+{
+  "name": "Radio Super Indio",
+  "short_name": "Radio Indio",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#063b94",
+  "description": "Player e painel da Radio Super Indio Indoor Media."
+}

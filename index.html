@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radio Super Indio - Indoor Media</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <img class="brand-mark" src="assets/logotipo.png" alt="Supermercado Indio">
+      <nav class="nav-list" aria-label="Modulos">
+        <a href="#painel">Painel</a>
+        <a href="#central">Central</a>
+        <a href="#radio">Radio</a>
+        <a href="#producao">Producao</a>
+        <a href="#trade">Trade</a>
+        <a href="#tvled">TV e LED</a>
+        <a href="#ia">IA</a>
+        <a href="#implantacao">Implantacao</a>
+      </nav>
+      <div class="pilot-card">
+        <span>Piloto recomendado</span>
+        <strong>Fase 1: Radio + logs + spots</strong>
+        <p>Colocar a programacao no ar, medir execucao por loja e preparar venda de midia para fornecedores.</p>
+      </div>
+    </aside>
+
+    <main>
+      <section id="painel" class="hero-band">
+        <div class="hero-copy">
+          <p class="eyebrow">Indios Indoor Media</p>
+          <h1>Central da radio online das lojas</h1>
+          <p>Uma plataforma para controlar radio indoor, anuncios, vinhetas, campanhas de fornecedores, TV, LED e criacao com IA a partir da matriz.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-scroll="#radio">Abrir player</button>
+            <button class="secondary-btn" type="button" data-scroll="#trade">Ver midia vendavel</button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Status operacional">
+          <img src="assets/mascote-placa.png" alt="Mascote Supermercado Indio">
+          <div class="signal-card">
+            <span>No ar agora</span>
+            <strong id="currentHeroTrack">Musica ambiente licenciada</strong>
+            <small>Loja piloto: Centro - Guaiba</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics-grid" aria-label="Indicadores principais">
+        <article class="metric">
+          <span>Lojas online</span>
+          <strong id="onlineStores">4/5</strong>
+          <small>Players conectados</small>
+        </article>
+        <article class="metric">
+          <span>Insercoes hoje</span>
+          <strong id="playsToday">128</strong>
+          <small>Radio + TV + LED</small>
+        </article>
+        <article class="metric">
+          <span>Campanhas ativas</span>
+          <strong>7</strong>
+          <small>Proprias e fornecedores</small>
+        </article>
+        <article class="metric">
+          <span>Receita potencial</span>
+          <strong>R$ 18,4 mil</strong>
+          <small>Pacotes de trade simulados</small>
+        </article>
+      </section>
+
+      <section id="central" class="panel">
+        <div class="section-head">
+          <p class="eyebrow">Produto completo</p>
+          <h2>Abas de controle da plataforma</h2>
+        </div>
+        <div class="tab-list" role="tablist" aria-label="Areas da plataforma">
+          <button class="tab-button active" type="button" data-tab="tab-operacao">Operacao</button>
+          <button class="tab-button" type="button" data-tab="tab-musica">Musicas</button>
+          <button class="tab-button" type="button" data-tab="tab-grade">Grade</button>
+          <button class="tab-button" type="button" data-tab="tab-lojas">Lojas</button>
+          <button class="tab-button" type="button" data-tab="tab-legal">Legal</button>
+          <button class="tab-button" type="button" data-tab="tab-relatorios">Relatorios</button>
+        </div>
+
+        <div id="tab-operacao" class="tab-panel active">
+          <div class="ops-grid">
+            <article><span>Dashboard</span><strong>Status em tempo real</strong><p>Lojas online/offline, players ativos, falhas, proximos anuncios e campanhas pendentes.</p></article>
+            <article><span>Perfis</span><strong>Admin, marketing, comercial e loja</strong><p>Cada area acessa apenas o que precisa. Loja opera player bloqueado.</p></article>
+            <article><span>Aprovacao</span><strong>Nada vai ao ar sem liberar</strong><p>Fluxo para proposta, producao, aprovacao, ativo, encerrado ou cancelado.</p></article>
+            <article><span>Logs</span><strong>Comprovacao por execucao</strong><p>Registro de inicio, fim, loja, canal, campanha e falha para auditoria.</p></article>
+          </div>
+        </div>
+
+        <div id="tab-musica" class="tab-panel">
+          <div class="music-decision">
+            <div>
+              <h3>Decisao executiva sobre biblioteca musical</h3>
+              <p>A recomendacao e operar com fonte B2B licenciada ou biblioteca propria com contrato comercial. Spotify, YouTube Music, Deezer e contas pessoais nao devem ser base da radio das lojas.</p>
+            </div>
+            <div class="decision-badge">Recomendado: B2B + cache local</div>
+          </div>
+          <div class="source-grid">
+            <article class="source-card recommended">
+              <span>Cenario A</span>
+              <strong>Servico B2B de musica</strong>
+              <p>Soundtrack, Mood Media, Stingray ou similar. Atualiza playlists, reduz risco juridico e permite estilos por horario.</p>
+              <small>Melhor para velocidade, atualidade e conformidade.</small>
+            </article>
+            <article class="source-card">
+              <span>Cenario B</span>
+              <strong>Biblioteca propria licenciada</strong>
+              <p>Arquivos baixados no servidor com nota, contrato e licenca. Controle total, mas exige curadoria e atualizacao manual.</p>
+              <small>Melhor para autonomia e marca propria.</small>
+            </article>
+            <article class="source-card risk">
+              <span>Evitar</span>
+              <strong>Streaming pessoal</strong>
+              <p>Spotify comum, YouTube Music e similares sao para uso pessoal e nao comercial, portanto nao devem tocar nas lojas.</p>
+              <small>Risco juridico e de bloqueio operacional.</small>
+            </article>
+          </div>
+          <div class="playlist-types">
+            <div><b>Manha</b><span>leve, familia, padaria, cafe</span></div>
+            <div><b>Pico</b><span>popular moderado, energia, fila</span></div>
+            <div><b>Tarde</b><span>ambiente, compras longas</span></div>
+            <div><b>Fechamento</b><span>mais calmo, avisos e limpeza</span></div>
+            <div><b>Sazonal</b><span>Natal, Semana Farroupilha, Pascoa</span></div>
+          </div>
+        </div>
+
+        <div id="tab-grade" class="tab-panel">
+          <div class="rules-grid">
+            <article><strong>Regra musical</strong><p>3 a 5 musicas entre blocos comerciais para nao cansar cliente nem equipe.</p></article>
+            <article><strong>Repeticao</strong><p>Mesmo spot nao deve repetir proximo demais. Controlar intervalo minimo por loja e campanha.</p></article>
+            <article><strong>Prioridade</strong><p>Urgente, alta, normal e baixa. Oferta relampago supera campanha comum.</p></article>
+            <article><strong>Horario</strong><p>Padaria de manha, acougue perto do almoco/fim de tarde, hortifruti em giro de reposicao.</p></article>
+            <article><strong>Obrigatorias</strong><p>Campanhas institucionais, avisos internos, clube de ofertas, QR Codes e seguranca.</p></article>
+            <article><strong>Cache</strong><p>Player baixa proximos audios e mantem a loja tocando se a internet oscilar.</p></article>
+          </div>
+        </div>
+
+        <div id="tab-lojas" class="tab-panel">
+          <div class="store-grid">
+            <article><span>Guaiba Centro</span><strong>Radio + TV</strong><small>Online - volume 68%</small></article>
+            <article><span>Eldorado do Sul</span><strong>Radio</strong><small>Online - aguardando TV</small></article>
+            <article><span>Sao Jeronimo</span><strong>Radio + LED</strong><small>Online - painel 1920x480</small></article>
+            <article><span>Arroio dos Ratos</span><strong>Radio</strong><small>Offline ha 12 min</small></article>
+            <article><span>Charqueadas</span><strong>Radio + TV + LED</strong><small>Online - piloto completo</small></article>
+          </div>
+        </div>
+
+        <div id="tab-legal" class="tab-panel">
+          <div class="legal-grid">
+            <article><strong>ECAD</strong><p>Validar execucao publica musical para supermercados e manter rotina de conformidade.</p></article>
+            <article><strong>Licencas</strong><p>Arquivar contrato, comprovante de uso comercial e origem de cada faixa, jingle e locucao.</p></article>
+            <article><strong>IA</strong><p>Guardar prompt, arquivo final, aceite do fornecedor e direito de uso comercial.</p></article>
+            <article><strong>Fornecedores</strong><p>Contrato de midia deve prever periodo, lojas, frequencia, criacao, aprovacao e relatorio.</p></article>
+          </div>
+        </div>
+
+        <div id="tab-relatorios" class="tab-panel">
+          <div class="report-grid">
+            <article><span>Fornecedor</span><strong>Contratado vs. realizado</strong><p>Insercoes por loja, dia, canal e campanha.</p></article>
+            <article><span>Matriz</span><strong>Falhas e uptime</strong><p>Quais lojas ficaram sem radio, TV ou LED e por quanto tempo.</p></article>
+            <article><span>Comercial</span><strong>Receita de midia</strong><p>Pipeline de propostas, vendidos, em producao e ativos.</p></article>
+            <article><span>Operacao</span><strong>Execucao da loja</strong><p>Volume, conexao, abertura do player e incidentes.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="radio" class="two-column">
+        <div class="panel radio-panel">
+          <div class="section-head">
+            <p class="eyebrow">Player bloqueado da loja</p>
+            <h2>Radio Indio Online</h2>
+            <span id="connectionStatus" class="status online">Conectado</span>
+          </div>
+          <div class="player-stage">
+            <button id="playBtn" class="play-button" type="button" aria-label="Tocar ou pausar radio">
+              <span id="playIcon">Play</span>
+            </button>
+            <div>
+              <span class="now-label">Tocando agora</span>
+              <strong id="nowPlaying">Musica ambiente licenciada</strong>
+              <p id="nowMeta">Rede toda - intervalo musical</p>
+            </div>
+          </div>
+          <div class="volume-row">
+            <label for="volumeRange">Volume da loja</label>
+            <input id="volumeRange" type="range" min="0" max="100" value="68">
+            <span id="volumeValue">68%</span>
+          </div>
+          <div class="stream-box">
+            <label for="streamUrl">URL futura do stream ou arquivo</label>
+            <div class="inline-form">
+              <input id="streamUrl" type="url" placeholder="https://.../radio.mp3">
+              <button id="loadStreamBtn" type="button">Carregar</button>
+            </div>
+            <audio id="audioPlayer" preload="none"></audio>
+          </div>
+          <div class="library-actions">
+            <button id="loadLocalLibraryBtn" class="primary-btn" type="button">Carregar biblioteca propria</button>
+            <button id="cacheLibraryBtn" class="secondary-btn" type="button">Baixar cache da loja</button>
+          </div>
+          <div id="libraryStatus" class="locked-note">
+            Biblioteca demo pronta: musicas locais, locucao teste e jingles vindos do agente de marketing.
+          </div>
+          <div class="locked-note">
+            Player de loja sem permissao para pular musica, editar grade ou remover anuncios. O controle fica na matriz.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head">
+            <p class="eyebrow">Grade de programacao</p>
+            <h2>Sequencia da radio</h2>
+          </div>
+          <div id="scheduleList" class="schedule-list"></div>
+          <button id="simulatePlayBtn" class="secondary-btn full" type="button">Registrar proxima execucao</button>
+        </div>
+      </section>
+
+      <section id="producao" class="panel">
+        <div class="section-head">
+          <p class="eyebrow">Central de producao automatica</p>
+          <h2>Spots, locucoes, jingles e avisos</h2>
+        </div>
+        <div class="production-grid">
+          <article>
+            <span>1. Briefing</span>
+            <strong>Oferta ou campanha</strong>
+            <p>Produto, preco, validade, lojas, canal, tom e duracao.</p>
+          </article>
+          <article>
+            <span>2. Texto</span>
+            <strong>GPT / agente marketing</strong>
+            <p>Gera versoes curta, animada, institucional e varejo popular.</p>
+          </article>
+          <article>
+            <span>3. Voz</span>
+            <strong>ElevenLabs</strong>
+            <p>Usa ELEVENLABS_API_KEY, voz Brian e modelo multilingual_v2.</p>
+          </article>
+          <article>
+            <span>4. Jingle</span>
+            <strong>Suno</strong>
+            <p>Gera letra e prompt musical; aprova arquivo e guarda licenca.</p>
+          </article>
+          <article>
+            <span>5. Aprovacao</span>
+            <strong>Marketing/comercial</strong>
+            <p>Ouvir, aprovar, reprovar ou ajustar antes de publicar.</p>
+          </article>
+          <article>
+            <span>6. Publicacao</span>
+            <strong>Grade + cache</strong>
+            <p>Entra na programacao e baixa nos players das lojas.</p>
+          </article>
+        </div>
+        <div class="automation-layout">
+          <form id="assetForm" class="campaign-form">
+            <label>Tipo de material
+              <select id="assetType">
+                <option value="spot">Spot de oferta</option>
+                <option value="aviso">Aviso interno</option>
+                <option value="jingle">Jingle</option>
+                <option value="vinheta">Vinheta</option>
+              </select>
+            </label>
+            <label>Produto/campanha<input id="assetCampaign" type="text" value="Sexta das Carnes"></label>
+            <label>Oferta ou mensagem<input id="assetOffer" type="text" value="Costela bovina kg por R$ 29,90 hoje"></label>
+            <label>Duração<select id="assetDuration"><option>15 segundos</option><option>30 segundos</option><option>45 segundos</option></select></label>
+            <button class="primary-btn" type="submit">Gerar fluxo de producao</button>
+          </form>
+          <div class="pipeline-result">
+            <strong>Resultado do fluxo</strong>
+            <pre id="assetOutput">Aguardando briefing.</pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="trade" class="panel">
+        <div class="section-head">
+          <p class="eyebrow">Onde esta o dinheiro</p>
+          <h2>Trade marketing para fornecedores</h2>
+        </div>
+        <div class="trade-layout">
+          <div class="trade-summary">
+            <h3>Transformar loja em canal de midia</h3>
+            <p>O maior valor do projeto nao esta so na musica. Esta em vender radio, TV e LED para marcas no momento em que o cliente esta decidindo a compra.</p>
+            <div class="package-grid">
+              <div><span>Radio</span><strong>8x/dia</strong><small>Spot 15s</small></div>
+              <div><span>TV</span><strong>12x/dia</strong><small>Video 10s</small></div>
+              <div><span>LED</span><strong>20x/dia</strong><small>Card de oferta</small></div>
+            </div>
+          </div>
+          <form id="campaignForm" class="campaign-form">
+            <label>Marca / fornecedor<input id="brandInput" type="text" value="PAN"></label>
+            <label>Campanha<input id="campaignInput" type="text" value="Biscoitos PAN - Junho"></label>
+            <label>Canal<select id="channelInput"><option>Radio + TV + LED</option><option>Radio</option><option>TV Indoor</option><option>Painel de LED</option></select></label>
+            <label>Insercoes por dia<input id="insertionsInput" type="number" min="1" value="8"></label>
+            <button class="primary-btn" type="submit">Adicionar campanha</button>
+          </form>
+        </div>
+        <div id="campaignTable" class="campaign-table" aria-live="polite"></div>
+      </section>
+
+      <section id="tvled" class="two-column">
+        <div class="panel screen-preview">
+          <div class="section-head">
+            <p class="eyebrow">TV Indoor</p>
+            <h2>Oferta na tela da loja</h2>
+          </div>
+          <div class="tv-frame">
+            <span>OFERTA DO DIA</span>
+            <strong>Acougue Indio</strong>
+            <p>Costela bovina kg</p>
+            <b>R$ 29,90</b>
+            <small>Valido enquanto durar o estoque</small>
+          </div>
+        </div>
+        <div class="panel led-preview">
+          <div class="section-head">
+            <p class="eyebrow">Painel de LED</p>
+            <h2>Preco grande, leitura rapida</h2>
+          </div>
+          <div class="led-board">
+            <span>FEIRAO</span>
+            <strong>Banana kg</strong>
+            <b>R$ 3,98</b>
+          </div>
+          <div class="export-row">
+            <button type="button">PNG</button>
+            <button type="button">JPG</button>
+            <button type="button">MP4</button>
+            <button type="button">HTML</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="ia" class="panel">
+        <div class="section-head">
+          <p class="eyebrow">GPT, voz, video e criacao</p>
+          <h2>Estudio de IA para campanhas</h2>
+        </div>
+        <div class="ai-grid">
+          <article>
+            <span>GPT</span>
+            <strong>Roteiro de spot</strong>
+            <p>Gera 3 versoes de texto: curta, animada e institucional.</p>
+          </article>
+          <article>
+            <span>ElevenLabs</span>
+            <strong>Locucao</strong>
+            <p>Transforma texto aprovado em audio para a biblioteca.</p>
+          </article>
+          <article>
+            <span>Suno</span>
+            <strong>Jingle</strong>
+            <p>Cria jingles curtos com controle de licenca comercial.</p>
+          </article>
+          <article>
+            <span>HeyGen / Canva</span>
+            <strong>Video e avatar</strong>
+            <p>Produz videos para TVs, QR Codes, fornecedores e datas sazonais.</p>
+          </article>
+        </div>
+        <div class="spot-builder">
+          <label for="spotPrompt">Briefing rapido do spot</label>
+          <textarea id="spotPrompt">Oferta de costela bovina a R$ 29,90 o kg, valida hoje em todas as lojas do Supermercado Indio. Tom animado, popular e direto.</textarea>
+          <button id="generateSpotBtn" class="primary-btn" type="button">Gerar texto do spot</button>
+          <output id="spotOutput"></output>
+        </div>
+      </section>
+
+      <section id="implantacao" class="panel">
+        <div class="section-head">
+          <p class="eyebrow">Colocar no ar</p>
+          <h2>Plano 30/60/90 dias</h2>
+        </div>
+        <div class="roadmap">
+          <article>
+            <span>30 dias</span>
+            <strong>MVP da radio</strong>
+            <p>Player web, biblioteca de audio, lojas piloto, vinhetas, spots e logs de execucao.</p>
+          </article>
+          <article>
+            <span>60 dias</span>
+            <strong>Trade marketing</strong>
+            <p>Fornecedores, pacotes comerciais, controle contratado versus realizado e relatorio PDF/Excel.</p>
+          </article>
+          <article>
+            <span>90 dias</span>
+            <strong>TV, LED e IA</strong>
+            <p>TV indoor, cards de LED, videos com avatar, jingles e integracao com ferramentas criativas.</p>
+          </article>
+        </div>
+        <div class="deploy-options">
+          <strong>Opcoes praticas de publicacao</strong>
+          <p>Primeiro passo: publicar esta pagina como prototipo em GitHub Pages ou hospedagem estatica. Produto real: evoluir para Next.js/React + Supabase/Postgres + storage para midias + backend para logs, agenda e seguranca.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# Sistema
+Thumbs.db
+desktop.ini
+
+# Ambiente local
+.env
+integrations/.env
+
+# Dependencias futuras
+node_modules/
+
+# Logs
+*.log

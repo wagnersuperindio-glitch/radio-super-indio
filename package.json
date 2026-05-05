@@ -1,0 +1,10 @@
+{
+  "name": "radio-super-indio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check app.js",
+    "create-audio": "node integrations/run-create-asset.js"
+  }
+}
