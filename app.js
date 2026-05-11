@@ -74,6 +74,7 @@ const volumeValue = document.getElementById('volumeValue');
 const streamUrl = document.getElementById('streamUrl');
 const loadStreamBtn = document.getElementById('loadStreamBtn');
 const audioPlayer = document.getElementById('audioPlayer');
+const connectionStatus = document.getElementById('connectionStatus');
 const campaignForm = document.getElementById('campaignForm');
 const campaignTable = document.getElementById('campaignTable');
 const generateSpotBtn = document.getElementById('generateSpotBtn');
@@ -86,6 +87,7 @@ const assetForm = document.getElementById('assetForm');
 const assetOutput = document.getElementById('assetOutput');
 
 let localLibrary = [];
+let cacheReady = false;
 
 function renderSchedule() {
   scheduleList.innerHTML = '';
@@ -106,6 +108,7 @@ function renderSchedule() {
 
 function setNowPlaying() {
   const current = schedule[currentIndex];
+  if (!current) return;
   nowPlaying.textContent = current.title;
   nowMeta.textContent = `${current.type} - ${current.meta}`;
   currentHeroTrack.textContent = current.title;
@@ -115,6 +118,7 @@ function setNowPlaying() {
 }
 
 function nextTrack() {
+  if (!schedule.length) return;
   currentIndex = (currentIndex + 1) % schedule.length;
   playCount += 1;
   const current = schedule[currentIndex];
@@ -129,7 +133,19 @@ function startSyntheticAudio() {
   stopSyntheticAudio();
   if (audioPlayer.src) {
     audioPlayer.volume = Number(volumeRange.value) / 100;
-    audioPlayer.play().catch(() => {});
+    audioPlayer.play().then(() => {
+      connectionStatus.textContent = cacheReady ? 'Rodando com cache' : 'Rodando';
+      connectionStatus.className = 'status online';
+      libraryStatus.textContent = cacheReady
+        ? `Player rodando. Cache local pronto com ${localLibrary.length} audios.`
+        : 'Player rodando. Cache ainda nao confirmado neste navegador.';
+    }).catch(() => {
+      playing = false;
+      playIcon.textContent = 'Play';
+      connectionStatus.textContent = 'Clique para tocar';
+      connectionStatus.className = 'status offline';
+      libraryStatus.textContent = 'Biblioteca carregada. O navegador exige um clique no Play para liberar o audio da loja.';
+    });
     return;
   }
 
@@ -156,6 +172,8 @@ function stopSyntheticAudio() {
   clearInterval(synthTimer);
   synthTimer = null;
   audioPlayer.pause();
+  connectionStatus.textContent = 'Pausado';
+  connectionStatus.className = 'status offline';
 }
 
 function togglePlay() {
@@ -204,10 +222,12 @@ async function loadLocalLibrary() {
     });
     currentIndex = 0;
     audioPlayer.src = schedule[0]?.url || '';
-    libraryStatus.textContent = `Biblioteca propria carregada: ${localLibrary.length} audios locais. Fonte: ${data.version}.`;
+    libraryStatus.textContent = `Biblioteca propria carregada automaticamente: ${localLibrary.length} audios locais. Fonte: ${data.version}.`;
     setNowPlaying();
+    return true;
   } catch (error) {
     libraryStatus.textContent = 'Nao foi possivel carregar a biblioteca local. Verifique media/library.json.';
+    return false;
   }
 }
 
@@ -222,7 +242,24 @@ async function cacheLibrary() {
     'media/library.json',
     ...localLibrary.map((track) => track.url)
   ]);
+  cacheReady = true;
   libraryStatus.textContent = `Cache local pronto: ${localLibrary.length} audios baixados para tocar com internet instavel.`;
+  return true;
+}
+
+async function bootStorePlayer() {
+  const loaded = await loadLocalLibrary();
+  if (!loaded) return;
+  try {
+    await cacheLibrary();
+    connectionStatus.textContent = 'Pronto para play';
+    connectionStatus.className = 'status online';
+    libraryStatus.textContent = `Loja pronta: biblioteca carregada, cache baixado e player armado. Clique Play uma vez para iniciar o expediente.`;
+  } catch (error) {
+    connectionStatus.textContent = 'Sem cache';
+    connectionStatus.className = 'status offline';
+    libraryStatus.textContent = 'Biblioteca carregada, mas o cache automatico falhou. Use o botao Baixar cache da loja.';
+  }
 }
 
 function addCampaign(event) {
@@ -314,9 +351,19 @@ loadStreamBtn.addEventListener('click', () => {
   if (playing) startSyntheticAudio();
 });
 
+audioPlayer.addEventListener('ended', nextTrack);
+audioPlayer.addEventListener('error', () => {
+  libraryStatus.textContent = 'Falha no audio atual. Avancando para a proxima faixa da biblioteca.';
+  nextTrack();
+});
+
 setNowPlaying();
 renderCampaigns();
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js').catch(() => {});
+  navigator.serviceWorker.register('service-worker.js')
+    .then(() => bootStorePlayer())
+    .catch(() => bootStorePlayer());
+} else {
+  bootStorePlayer();
 }
