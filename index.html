@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#063b94">
   <title>Radio Super Indio - Indoor Media</title>
   <link rel="stylesheet" href="app.css">
+  <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
   <div class="app-shell">
@@ -179,8 +181,8 @@
             <span id="connectionStatus" class="status online">Conectado</span>
           </div>
           <div class="player-stage">
-            <button id="playBtn" class="play-button" type="button" aria-label="Tocar ou pausar radio">
-              <span id="playIcon">Play</span>
+            <button id="playBtn" class="play-button" type="button" aria-label="Iniciar ou pausar radio da loja">
+              <span id="playIcon">Iniciar</span>
             </button>
             <div>
               <span class="now-label">Tocando agora</span>
@@ -272,7 +274,7 @@
             </label>
             <label>Produto/campanha<input id="assetCampaign" type="text" value="Sexta das Carnes"></label>
             <label>Oferta ou mensagem<input id="assetOffer" type="text" value="Costela bovina kg por R$ 29,90 hoje"></label>
-            <label>Duração<select id="assetDuration"><option>15 segundos</option><option>30 segundos</option><option>45 segundos</option></select></label>
+            <label>Duracao<select id="assetDuration"><option>15 segundos</option><option>30 segundos</option><option>45 segundos</option></select></label>
             <button class="primary-btn" type="submit">Gerar fluxo de producao</button>
           </form>
           <div class="pipeline-result">
