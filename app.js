@@ -88,6 +88,10 @@ const assetOutput = document.getElementById('assetOutput');
 
 let localLibrary = [];
 let cacheReady = false;
+let wakeLock = null;
+
+audioPlayer.setAttribute('playsinline', '');
+audioPlayer.preload = 'auto';
 
 function renderSchedule() {
   scheduleList.innerHTML = '';
@@ -112,7 +116,7 @@ function setNowPlaying() {
   nowPlaying.textContent = current.title;
   nowMeta.textContent = `${current.type} - ${current.meta}`;
   currentHeroTrack.textContent = current.title;
-  playIcon.textContent = playing ? 'Pausar' : 'Play';
+  playIcon.textContent = playing ? 'Pausar' : 'Iniciar';
   playsToday.textContent = playCount;
   renderSchedule();
 }
@@ -129,10 +133,24 @@ function nextTrack() {
   setNowPlaying();
 }
 
+async function requestWakeLock() {
+  try {
+    if ('wakeLock' in navigator && !wakeLock) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeLock.addEventListener('release', () => {
+        wakeLock = null;
+      });
+    }
+  } catch (error) {
+    wakeLock = null;
+  }
+}
+
 function startSyntheticAudio() {
-  stopSyntheticAudio();
+  stopSyntheticAudio(false);
   if (audioPlayer.src) {
     audioPlayer.volume = Number(volumeRange.value) / 100;
+    requestWakeLock();
     audioPlayer.play().then(() => {
       connectionStatus.textContent = cacheReady ? 'Rodando com cache' : 'Rodando';
       connectionStatus.className = 'status online';
@@ -141,7 +159,7 @@ function startSyntheticAudio() {
         : 'Player rodando. Cache ainda nao confirmado neste navegador.';
     }).catch(() => {
       playing = false;
-      playIcon.textContent = 'Play';
+      playIcon.textContent = 'Iniciar';
       connectionStatus.textContent = 'Clique para tocar';
       connectionStatus.className = 'status offline';
       libraryStatus.textContent = 'Biblioteca carregada. O navegador exige um clique no Play para liberar o audio da loja.';
@@ -168,15 +186,27 @@ function startSyntheticAudio() {
   }, 360);
 }
 
-function stopSyntheticAudio() {
+function stopSyntheticAudio(updateStatus = true) {
   clearInterval(synthTimer);
   synthTimer = null;
   audioPlayer.pause();
-  connectionStatus.textContent = 'Pausado';
-  connectionStatus.className = 'status offline';
+  if (updateStatus) {
+    connectionStatus.textContent = 'Pausado';
+    connectionStatus.className = 'status offline';
+  }
 }
 
-function togglePlay() {
+async function togglePlay() {
+  if (!localLibrary.length) {
+    await loadLocalLibrary();
+  }
+  if (!cacheReady) {
+    try {
+      await cacheLibrary();
+    } catch (error) {
+      libraryStatus.textContent = 'Biblioteca carregada, mas o cache ainda nao confirmou. A radio pode tocar mesmo assim.';
+    }
+  }
   playing = !playing;
   if (playing) {
     startSyntheticAudio();
@@ -222,6 +252,7 @@ async function loadLocalLibrary() {
     });
     currentIndex = 0;
     audioPlayer.src = schedule[0]?.url || '';
+    audioPlayer.load();
     libraryStatus.textContent = `Biblioteca propria carregada automaticamente: ${localLibrary.length} audios locais. Fonte: ${data.version}.`;
     setNowPlaying();
     return true;
@@ -237,7 +268,7 @@ async function cacheLibrary() {
     return;
   }
   if (!localLibrary.length) await loadLocalLibrary();
-  const cache = await caches.open('radio-super-indio-store-cache-v1');
+  const cache = await caches.open('radio-super-indio-store-cache-v3');
   await cache.addAll([
     'media/library.json',
     ...localLibrary.map((track) => track.url)
@@ -355,6 +386,13 @@ audioPlayer.addEventListener('ended', nextTrack);
 audioPlayer.addEventListener('error', () => {
   libraryStatus.textContent = 'Falha no audio atual. Avancando para a proxima faixa da biblioteca.';
   nextTrack();
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && playing) {
+    requestWakeLock();
+    audioPlayer.play().catch(() => {});
+  }
 });
 
 setNowPlaying();
